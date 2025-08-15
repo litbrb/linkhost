@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuickHost Upload</title>
+<style>
+  body { font-family: "Trebuchet MS", Verdana, Arial, sans-serif; background:#F9FAFB; color:#2D2D2D; text-align:center; padding:80px 20px; }
+  h1 { margin-bottom:20px; }
+  p { margin-bottom:40px; }
+  .dropzone {
+    border: 3px dashed #1BC5BD;
+    border-radius: 20px;
+    padding: 60px 20px;
+    background:#fff;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  .dropzone.hover { background:#E0F8F8; transform:translateY(-3px); }
+  .dropzone input { display:none; }
+  #linkContainer { margin-top:30px; }
+  a.generated-link { display:inline-block; margin-top:10px; color:#1BC5BD; text-decoration:none; font-weight:bold; word-break:break-all; }
+  a.generated-link:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+
+<h1>Upload Your HTML</h1>
+<p>Drag & drop your HTML file here or click to select.</p>
+
+<div class="dropzone" id="dropzone">
+  <input type="file" id="fileInput" accept=".html">
+  <p>Drop file here or click to upload</p>
+</div>
+
+<div id="linkContainer"></div>
+
+<script>
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const linkContainer = document.getElementById('linkContainer');
+
+dropzone.addEventListener('click', () => fileInput.click());
+dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('hover'); });
+dropzone.addEventListener('dragleave', () => dropzone.classList.remove('hover'));
+dropzone.addEventListener('drop', (e) => { e.preventDefault(); dropzone.classList.remove('hover'); handleFile(e.dataTransfer.files[0]); });
+fileInput.addEventListener('change', () => handleFile(fileInput.files[0]));
+
+function handleFile(file) {
+  if (!file) return;
+  if (!file.name.endsWith('.html')) { alert('Only HTML files are supported.'); return; }
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    let content = e.target.result;
+    content = encodeURIComponent(content);
+    const link = `view.html?=${content}`;
+    linkContainer.innerHTML = `<p>Your file is ready! Click the link below:</p>
+                               <a class="generated-link" href="${link}" target="_blank">Your Site</a>`;
+  };
+  reader.readAsText(file);
+}
+</script>
+
+</body>
+</html>
