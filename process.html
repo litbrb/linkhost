@@ -121,7 +121,7 @@
             const content = htmlInput.value.trim();
             if (!content) { alert('Please write some HTML first.'); return; }
             const encoded = encodeURIComponent(content);
-            const link = `view.html?=${encoded}`;
+            const link = `view.html#${encoded}`;
             linkContainer.innerHTML = `<p>Your site is ready! Click the link below (you may use TinyURL to shorten the link):</p> <a class="generated-link" href="${link}" target="_blank">Your Site</a>`;
         });
 
@@ -133,7 +133,7 @@
             reader.onload = function (e) {
                 let content = e.target.result;
                 const encoded = encodeURIComponent(content);
-                const link = `view.html?=${encoded}`;
+                const link = `view.html#${encoded}`;
                 linkContainer.innerHTML = `<p>Your site is ready! Click the link below (you may use TinyURL to shorten the link):</p> <a class="generated-link" href="${link}" target="_blank">Your Site</a> `;
             };
             reader.readAsText(file);
@@ -143,3 +143,4 @@
 </body>
 
 </html>
+
