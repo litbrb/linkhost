@@ -104,6 +104,7 @@
 
     <div id="linkContainer"></div>
 
+    <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
     <script>
         const dropzone = document.getElementById('dropzone');
         const fileInput = document.getElementById('fileInput');
@@ -120,8 +121,7 @@
         generateBtn.addEventListener('click', () => {
             const content = htmlInput.value.trim();
             if (!content) { alert('Please write some HTML first.'); return; }
-            const encoded = encodeURIComponent(content);
-            const link = `view.html#${encoded}`;
+            const link = `view.html#${LZString.compressToEncodedURIComponent(content)}`;
             linkContainer.innerHTML = `<p>Your site is ready! Click the link below (you may use TinyURL to shorten the link):</p> <a class="generated-link" href="${link}" target="_blank">Your Site</a>`;
         });
 
@@ -132,8 +132,7 @@
             const reader = new FileReader();
             reader.onload = function (e) {
                 let content = e.target.result;
-                const encoded = encodeURIComponent(content);
-                const link = `view.html#${encoded}`;
+                const link = `view.html#${LZString.compressToEncodedURIComponent(content)}`;
                 linkContainer.innerHTML = `<p>Your site is ready! Click the link below (you may use TinyURL to shorten the link):</p> <a class="generated-link" href="${link}" target="_blank">Your Site</a> `;
             };
             reader.readAsText(file);
