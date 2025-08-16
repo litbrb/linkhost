@@ -5,174 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LinkHost - Free HTML Hosting</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Trebuchet MS;
-            background: #F9FAFB;
-            color: #2D2D2D;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        header {
-            text-align: center;
-            padding: 5vh;
-        }
-
-        header h1 {
-            font-size: 2.8em;
-            margin-bottom: 0.5em;
-        }
-
-        header p {
-            font-size: 1.2em;
-            margin-bottom: 1em;
-            color: #555;
-        }
-
-        .btn {
-            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-            background: #1BC5BD;
-            color: #fff;
-            padding: 15px 30px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1em;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: #17a7a1;
-            transform: translateY(-2px);
-        }
-
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 60px 20px;
-            gap: 30px;
-        }
-
-        .feature {
-            background: #fff;
-            border-radius: 15px;
-            padding: 30px;
-            width: 250px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-            transition: 0.3s;
-        }
-
-        .feature:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .feature h3 {
-            margin-top: 15px;
-            margin-bottom: 10px;
-        }
-
-        .steps {
-            background: #fff;
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .steps h2 {
-            margin-bottom: 40px;
-        }
-
-        .step-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 40px;
-        }
-
-        .step {
-            width: 200px;
-            padding: 20px;
-            border-radius: 15px;
-            background: #F0F8F8;
-            transition: 0.3s;
-        }
-
-        .step:hover {
-            background: #E0F0F0;
-            transform: translateY(-3px);
-        }
-
-        .faq {
-            padding: 60px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            user-select: none;
-        }
-
-        .faq h2 {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .question {
-            background: #fff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            cursor: pointer;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-            transition: 0.3s;
-        }
-
-        .question:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        .answer {
-            display: none;
-            padding: 10px 0 0 0;
-            color: #555;
-        }
-
-        .github {
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .github a {
-            display: inline-block;
-            background: #2D2D2D;
-            color: #fff;
-            padding: 12px 25px;
-            border-radius: 20px;
-            font-size: 1em;
-            transition: 0.3s;
-        }
-
-        .github a:hover {
-            background: #444;
-            transform: translateY(-2px);
-        }
-
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            font-size: 0.9em;
-            color: #777;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-
     <header>
         <h1>Push your HTML to the Web in Seconds</h1>
         <p>Free, fast, and zero hassle hosting for front-end devs</p>
@@ -206,9 +42,9 @@
     <section class="steps">
         <h2>How It Works</h2>
         <div class="step-list">
-            <div class="step">1️⃣ Drag & Drop Your HTML</div>
-            <div class="step">2️⃣ Copy Your Live URL</div>
-            <div class="step">3️⃣ Share or Test Immediately</div>
+            <div class="step">1. Drag & Drop Your HTML</div>
+            <div class="step">2. Copy Your Live URL</div>
+            <div class="step">3. Share or Test Immediately</div>
         </div>
     </section>
 
@@ -225,9 +61,9 @@
         </div>
     </section>
 
-    <section class="github">
-        <a href="https://github.com/literally-barbarossa/linkhost" target="_blank">Check out the source on GitHub</a>
-    </section>
+    <div id="github"><button class="btn" onclick="window.location.href='https://github.com/litbrb/linkhost'">Check out
+            the source on Github</button></div>
+
 
     <footer>
         &copy; 2025 LinkHost • Fast, simple HTML hosting
@@ -240,6 +76,7 @@
                 ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
             });
         });
+        
     </script>
 
 </body>
