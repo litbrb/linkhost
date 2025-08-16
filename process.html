@@ -1,66 +1,145 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QuickHost Upload</title>
-<style>
-  body { font-family: "Trebuchet MS", Verdana, Arial, sans-serif; background:#F9FAFB; color:#2D2D2D; text-align:center; padding:80px 20px; }
-  h1 { margin-bottom:20px; }
-  p { margin-bottom:40px; }
-  .dropzone {
-    border: 3px dashed #1BC5BD;
-    border-radius: 20px;
-    padding: 60px 20px;
-    background:#fff;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  .dropzone.hover { background:#E0F8F8; transform:translateY(-3px); }
-  .dropzone input { display:none; }
-  #linkContainer { margin-top:30px; }
-  a.generated-link { display:inline-block; margin-top:10px; color:#1BC5BD; text-decoration:none; font-weight:bold; word-break:break-all; }
-  a.generated-link:hover { text-decoration:underline; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkHost Upload</title>
+    <style>
+        body {
+            font-family: "Trebuchet MS", Verdana, Arial, sans-serif;
+            background: #F9FAFB;
+            color: #2D2D2D;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+        .dropzone {
+            border: 3px dashed #1BC5BD;
+            border-radius: 20px;
+            padding: 60px 20px;
+            background: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+            margin-bottom: 30px;
+            margin: auto;
+            max-width: 50vw;
+        }
+
+        .dropzone.hover {
+            background: #E0F8F8;
+            transform: translateY(-3px);
+        }
+
+        .dropzone input {
+            display: none;
+        }
+
+        textarea {
+            width: 100%;
+            max-width: 600px;
+            height: 200px;
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid #1BC5BD;
+            resize: vertical;
+            font-family: monospace;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #1BC5BD;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background: #17a39b;
+        }
+
+        #linkContainer {
+            margin-top: 30px;
+        }
+
+        a.generated-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #1BC5BD;
+            text-decoration: none;
+            font-weight: bold;
+            word-break: break-all;
+        }
+
+        a.generated-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
+
 <body>
 
-<h1>Upload Your HTML</h1>
-<p>Drag & drop your HTML file here or click to select.</p>
+    <h1>Upload or Write Your HTML</h1>
+    <p>Drag & drop your HTML file, click to select, or write your HTML below.</p>
 
-<div class="dropzone" id="dropzone">
-  <input type="file" id="fileInput" accept=".html">
-  <p>Drop file here or click to upload</p>
-</div>
+    <div class="dropzone" id="dropzone">
+        <input type="file" id="fileInput" accept=".html">
+        <p>Drop file here or click to upload</p>
+    </div>
 
-<div id="linkContainer"></div>
+    <p>Or write your HTML directly:</p>
+    <textarea id="htmlInput" placeholder="Type your HTML here..."></textarea><br>
+    <button id="generateBtn">Generate Link</button>
 
-<script>
-const dropzone = document.getElementById('dropzone');
-const fileInput = document.getElementById('fileInput');
-const linkContainer = document.getElementById('linkContainer');
+    <div id="linkContainer"></div>
 
-dropzone.addEventListener('click', () => fileInput.click());
-dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('hover'); });
-dropzone.addEventListener('dragleave', () => dropzone.classList.remove('hover'));
-dropzone.addEventListener('drop', (e) => { e.preventDefault(); dropzone.classList.remove('hover'); handleFile(e.dataTransfer.files[0]); });
-fileInput.addEventListener('change', () => handleFile(fileInput.files[0]));
+    <script>
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const linkContainer = document.getElementById('linkContainer');
+        const htmlInput = document.getElementById('htmlInput');
+        const generateBtn = document.getElementById('generateBtn');
 
-function handleFile(file) {
-  if (!file) return;
-  if (!file.name.endsWith('.html')) { alert('Only HTML files are supported.'); return; }
+        dropzone.addEventListener('click', () => fileInput.click());
+        dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('hover'); });
+        dropzone.addEventListener('dragleave', () => dropzone.classList.remove('hover'));
+        dropzone.addEventListener('drop', (e) => { e.preventDefault(); dropzone.classList.remove('hover'); handleFile(e.dataTransfer.files[0]); });
+        fileInput.addEventListener('change', () => handleFile(fileInput.files[0]));
 
-  const reader = new FileReader();
-  reader.onload = function(e) {
-    let content = e.target.result;
-    content = encodeURIComponent(content);
-    const link = `view.html?=${content}`;
-    linkContainer.innerHTML = `<p>Your file is ready! Click the link below:</p>
-                               <a class="generated-link" href="${link}" target="_blank">Your Site</a>`;
-  };
-  reader.readAsText(file);
-}
-</script>
+        generateBtn.addEventListener('click', () => {
+            const content = htmlInput.value.trim();
+            if (!content) { alert('Please write some HTML first.'); return; }
+            const encoded = encodeURIComponent(content);
+            const link = `view.html?=${encoded}`;
+            linkContainer.innerHTML = `<p>Your site is ready! Click the link below (you may use TinyURL to shorten the link):</p> <a class="generated-link" href="${link}" target="_blank">Your Site</a>`;
+        });
+
+        function handleFile(file) {
+            if (!file) return;
+            if (!file.name.endsWith('.html')) { alert('Only HTML files are supported.'); return; }
+
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                let content = e.target.result;
+                const encoded = encodeURIComponent(content);
+                const link = `view.html?=${encoded}`;
+                linkContainer.innerHTML = `<p>Your site is ready! Click the link below (you may use TinyURL to shorten the link):</p> <a class="generated-link" href="${link}" target="_blank">Your Site</a> `;
+            };
+            reader.readAsText(file);
+        }
+    </script>
 
 </body>
+
 </html>
