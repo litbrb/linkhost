@@ -1,5 +1,4 @@
 <script>
-    const urlParams = new URLSearchParams(window.location.search)
-
-    document.write(urlParams.get(""))
+    const data = decodeURIComponent(window.location.hash.substring(1))
+    document.write(data)
 </script>
