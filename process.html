@@ -5,55 +5,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LinkHost Upload</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: rgb(30,30,30);
+            color: rgb(225, 225, 225);
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
 
     <h1>Upload or Write Your HTML</h1>
-    <p>Drag & drop your HTML file, click to select, or write your HTML below.</p>
-
-    <div class="dropzone" id="dropzone">
-        <input type="file" id="fileInput" accept=".html">
-        <p>Drop file here or click to upload</p>
-    </div>
-
-    <p>Or write your HTML directly:</p>
-    <textarea id="htmlInput" placeholder="Type your HTML here..."></textarea><br>
+    <p>Select your HTML file you wish to upload.</p>
+    
+    <input type="file" id="fileInput" accept=".html">
+    
     <button id="generateBtn">Generate Link</button>
 
     <div id="linkContainer"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
     <script>
-        const dropzone = document.getElementById('dropzone');
         const fileInput = document.getElementById('fileInput');
         const linkContainer = document.getElementById('linkContainer');
-        const htmlInput = document.getElementById('htmlInput');
         const generateBtn = document.getElementById('generateBtn');
 
-        dropzone.addEventListener('click', () => fileInput.click());
-        dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('hover'); });
-        dropzone.addEventListener('dragleave', () => dropzone.classList.remove('hover'));
-        dropzone.addEventListener('drop', (e) => { e.preventDefault(); dropzone.classList.remove('hover'); handleFile(e.dataTransfer.files[0]); });
-        fileInput.addEventListener('change', () => handleFile(fileInput.files[0]));
-
-        generateBtn.addEventListener('click', () => {
-            const content = htmlInput.value.trim();
-            if (!content) { alert('Please write some HTML first.'); return; }
-            const link = `view.html#${LZString.compressToEncodedURIComponent(content)}`;
-            linkContainer.innerHTML = `<p>Your site is ready! Click the link below (you may use TinyURL to shorten the link):</p> <a class="generated-link" href="${link}" target="_blank">Your Site</a>`;
-        });
-
         function handleFile(file) {
-            if (!file) return;
-            if (!file.name.endsWith('.html')) { alert('Only HTML files are supported.'); return; }
-
             const reader = new FileReader();
             reader.onload = function (e) {
                 let content = e.target.result;
                 const link = `view.html#${LZString.compressToEncodedURIComponent(content)}`;
-                linkContainer.innerHTML = `<p>Your site is ready! Click the link below (you may use TinyURL to shorten the link):</p> <a class="generated-link" href="${link}" target="_blank">Your Site</a> `;
+                linkContainer.innerHTML = `<p>Your site is ready! Click the link below:</p> <a class="generated-link" href="${link}" target="_blank">Your Site</a> `;
             };
             reader.readAsText(file);
         }
@@ -62,4 +50,5 @@
 </body>
 
 </html>
+
 
