@@ -4,82 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LinkHost - Free HTML Hosting</title>
-    <link rel="stylesheet" href="style.css">
+    <title>LinkHost Hosting</title>
+
+    <style>
+        body {
+            background-color: rgb(30,30,30);
+            color: rgb(225, 225, 225);
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
 </head>
 
 <body>
-    <header>
-        <h1>Push your HTML to the Web in Seconds</h1>
-        <p>Free, fast, and zero hassle hosting for front-end devs</p>
-        <button class="btn" onclick="window.location.href='process.html'">Host Now</button>
-    </header>
+    <h1>LinkHost Hosting</h1>
+    <p>LinkHost Hosting lets you host websites to the web for completely free. Our unique link-embedded technique ensures the maximum speed and efficiency for your application.</p>
 
-    <section class="features">
-        <div class="feature">
-            <div>🚀</div>
-            <h3>Instant Hosting</h3>
-            <p>Upload your HTML immediately without server hassle.</p>
-        </div>
-        <div class="feature">
-            <div>💸</div>
-            <h3>Zero Cost</h3>
-            <p>Completely free, forever.</p>
-        </div>
-        <div class="feature">
-            <div>🌐</div>
-            <h3>Share Anywhere</h3>
-            <p>Get a public URL you can share with anyone instantly.</p>
-        </div>
-        <div class="feature">
-            <div>⚡</div>
-            <h3>Blazing Fast</h3>
-            <p>Your HTML loads instantly anywhere in the world.</p>
-        </div>
-
-    </section>
-
-    <section class="steps">
-        <h2>How It Works</h2>
-        <div class="step-list">
-            <div class="step">1. Drag & Drop Your HTML</div>
-            <div class="step">2. Copy Your Live URL</div>
-            <div class="step">3. Share or Test Immediately</div>
-        </div>
-    </section>
-
-    <section class="faq">
-        <h2>FAQ</h2>
-        <div class="question">Can I host multiple files?<div class="answer">Currently, we only support single HTML files
-                for quick hosting.</div>
-        </div>
-        <div class="question">Is it really free?<div class="answer">Yes! Hosting is completely free with no hidden
-                charges.</div>
-        </div>
-        <div class="question">Do you support CSS/JS?<div class="answer">Yes! You can include inline CSS/JS inside your
-                HTML file.</div>
-        </div>
-    </section>
-
-    <div id="github"><button class="btn" onclick="window.location.href='https://github.com/litbrb/linkhost'">Check out
-            the source on Github</button></div>
-
-
-    <footer>
-        &copy; 2025 LinkHost • Fast, simple HTML hosting
-    </footer>
-
-    <script>
-        document.querySelectorAll('.question').forEach(q => {
-            q.addEventListener('click', () => {
-                const ans = q.querySelector('.answer');
-                ans.style.display = ans.style.display === 'block' ? 'none' : 'block';
-            });
-        });
-        
-    </script>
+    <button onclick="window.location.href='process.html'">Host A Website</button> <button onclick="window.location.href='https://github.com/litbrb/linkhost'">Github Source</button>
 
 </body>
 
 
 </html>
+
